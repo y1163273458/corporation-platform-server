@@ -25,6 +25,7 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
         // 查询最新发布的10个活动
         LambdaQueryWrapper<Activity> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByDesc(Activity::getCreateTime);
+        wrapper.eq(Activity::getPstatus,"已通过");
         wrapper.last("Limit 10");
         List<Activity> data = this.baseMapper.selectList(wrapper);
         if(data != null){

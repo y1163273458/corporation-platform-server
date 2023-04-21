@@ -2,6 +2,9 @@ package com.example.corporationplatformserver.service;
 
 import com.example.corporationplatformserver.entity.Corporation;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.corporationplatformserver.entity.User;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ICorporationService extends IService<Corporation> {
 
+    Map<String, Object> getName(String cid);
 }

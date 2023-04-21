@@ -1,7 +1,9 @@
 package com.example.corporationplatformserver.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.corporationplatformserver.controller.CorporationmController;
 import com.example.corporationplatformserver.entity.Corporationm;
+import com.example.corporationplatformserver.entity.User;
 
 /**
  * <p>
@@ -13,4 +15,5 @@ import com.example.corporationplatformserver.entity.Corporationm;
  */
 public interface ICorporationmService extends IService<Corporationm> {
 
+    Corporationm hasJoin(User userinfo);
 }

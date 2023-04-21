@@ -10,6 +10,7 @@ public enum Code {
     //成功
     SUCCESS_SELECT(20000,"查询成功"),
     SUCCESS_UPDATE(20001,"更新成功"),
+    SUCCESS_SELECT_CORP(20100,"查询到社团用户"),
 
     //失败
     FAIL_SELECT(30000,"查询失败"),

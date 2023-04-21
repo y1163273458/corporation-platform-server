@@ -60,6 +60,12 @@ public class Activity implements Serializable {
     /**
      * 活动状态(准备中，报名中，进行中，已结束)
      */
+    private String pstatus;
+
+
+    /**
+     * 活动状态(准备中，报名中，进行中，已结束)
+     */
     private String astatus;
 
     /**
@@ -87,6 +93,11 @@ public class Activity implements Serializable {
      * 活动审批人ID，长11位
      */
     private String pid;
+
+    /**
+     * 审批时间
+     */
+    private LocalDateTime processTime;
 
     /**
      * 条目创建时间
