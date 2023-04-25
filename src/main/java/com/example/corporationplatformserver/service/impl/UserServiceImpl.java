@@ -1,6 +1,8 @@
 package com.example.corporationplatformserver.service.impl;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.example.corporationplatformserver.common.vo.SystemDateTime;
 import com.example.corporationplatformserver.entity.User;
 import com.example.corporationplatformserver.mapper.UserMapper;
 import com.example.corporationplatformserver.service.IUserService;
@@ -30,11 +32,44 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         User login_user = this.baseMapper.selectOne(wrapper);
         if (login_user != null){
             //生成user的token
-            String token_user = "user:" + UUID.randomUUID();
             Map<String, Object> data = new HashMap<>();
-            data.put("token",token_user);
+            data.put("token",UUID.randomUUID());
             data.put("user",login_user);
             return data;
+        }
+        return null;
+    }
+
+    @Override
+    public String getUName(String uid) {
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(User::getUid,uid);
+        User user = this.baseMapper.selectOne(wrapper);
+        if (user != null){
+            return user.getUname();
+        }
+        return null;
+    }
+
+    @Override
+    public Boolean isFirstLogin(User userinfo) {
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(User::getUid,userinfo.getUid());
+        User user = this.baseMapper.selectOne(wrapper);
+        if(user.getCreateTime().equals(user.getUpdateTime())){
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
+
+    @Override
+    public Map<String, Object> changepassword(User userinfo) {
+        userinfo.setUpdateTime(new SystemDateTime().getTime());
+
+        System.out.println("=========" + userinfo);
+        int result = this.baseMapper.updateById(userinfo);
+        if(result > 0){
+            return this.login(userinfo);
         }
         return null;
     }

@@ -46,6 +46,12 @@ public class UserController {
         // 将接收的用户id、密码提交至service，判断是否存在该用户
         Map<String,Object> data = userService.login(userinfo);
         if (data != null){
+            //根据该用户创建时间和最后更新时间判断该用户是否为首次登录,首次登录则需要该用户更改密码
+            User user = (User) data.get("user");
+            if (user.getCreateTime().equals(user.getUpdateTime())){
+                return Result.success(20010,code.getMessageByCode(20010));
+            }
+//            Boolean isfirstlogin = userService.isFirstLogin(userinfo);
             // 根据用户id，判断是否加入了社团
             Corporationm corporationm = corporationmService.hasJoin(userinfo);
             // 如果该用户加入了社团则查询对应的社团名称
@@ -57,7 +63,7 @@ public class UserController {
                 if (corp_data != null){
                     crop_map.put("cname",corp_data.get("name"));
                     data.put("corp_info",crop_map);
-                    return Result.success(20010,data,code.getMessageByCode(20010));
+                    return Result.success(20100,data,code.getMessageByCode(20100));
                 }
             }
             System.out.println(data);
@@ -65,6 +71,14 @@ public class UserController {
         }
         return Result.fail(30000,code.getMessageByCode(30000));
     }
-
+    //监听更改密码请求的接口
+    @PostMapping("changepassword")
+    public Result<Map<String,Object>> changepassword(@RequestBody User userinfo){
+        Map<String,Object> data = userService.changepassword(userinfo);
+        if (data != null){
+            return Result.success(20011,data,code.getMessageByCode(20011));
+        }
+        return Result.fail(30000,code.getMessageByCode(30000));
+    }
 }
 

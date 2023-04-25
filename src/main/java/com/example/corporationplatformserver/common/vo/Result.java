@@ -31,6 +31,10 @@ public class Result<T> {
     public static <T> Result<T> success(Integer code,T data,String message) {
         return new Result<>(code, message, data);
     }
+    //带特征码和信息的成功
+    public static <T> Result<T> success(Integer code,String message) {
+        return new Result<>(code, message, null);
+    }
 
     //失败
     public static <T> Result<T> fail(){

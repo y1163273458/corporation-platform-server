@@ -20,4 +20,6 @@ public interface INoticeService extends IService<Notice> {
     List<Notice> load(User user);
 
     Map<String, Object> detail(Notice notice);
+
+    Boolean create(Notice notice);
 }

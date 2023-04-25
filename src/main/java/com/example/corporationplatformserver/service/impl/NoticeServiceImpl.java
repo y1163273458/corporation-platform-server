@@ -27,7 +27,7 @@ import java.util.Map;
 @Service
 public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice> implements INoticeService {
 
-    SystemDateTime dateTime =  new SystemDateTime();
+    SystemDateTime systemDateTime =  new SystemDateTime();
 
     @Override
     public List<Notice> load(User user) {
@@ -55,7 +55,7 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice> impleme
         //更新notice状态和时间
         notice_update = new Notice(notice_select);
         notice_update.setNstatus("已读");
-        notice_update.setUpdateTime(dateTime.getTime());
+        notice_update.setUpdateTime(systemDateTime.getTime());
 
         Integer result = this.baseMapper.updateById(notice_update);
         System.out.println(data);
@@ -64,5 +64,17 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice> impleme
         }
         return null;
     }
+
+    @Override
+    public Boolean create(Notice notice) {
+        notice.setCreateTime(systemDateTime.getTime());
+        notice.setUpdateTime(systemDateTime.getTime());
+        int isSuccess = this.baseMapper.insert(notice);
+        if(isSuccess > 0){
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
+
 
 }

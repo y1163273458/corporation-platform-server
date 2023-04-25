@@ -16,4 +16,10 @@ import java.util.Map;
 public interface IUserService extends IService<User> {
 
     Map<String, Object> login(User userinfo);
+
+    String getUName(String uid);
+
+    Boolean isFirstLogin(User userinfo);
+
+    Map<String, Object> changepassword(User userinfo);
 }

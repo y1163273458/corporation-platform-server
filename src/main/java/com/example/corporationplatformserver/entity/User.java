@@ -1,5 +1,6 @@
 package com.example.corporationplatformserver.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -20,6 +21,7 @@ public class User implements Serializable {
     /**
      * 用户ID（此处由学号代替）
      */
+    @TableId
     private String uid;
 
     /**

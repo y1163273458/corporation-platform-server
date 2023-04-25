@@ -10,11 +10,18 @@ public enum Code {
     //成功
     SUCCESS_SELECT(20000,"查询成功"),
     SUCCESS_UPDATE(20001,"更新成功"),
+    SUCCESS_NEED_CHANGE_PASSWORD(20010,"查询用户成功，该用户首次登录，需要更改密码"),
+    SUCCESS_UPDATE_PASSWORD(20011,"更新成功"),
     SUCCESS_SELECT_CORP(20100,"查询到社团用户"),
+    SUCCESS_SELECT_ACTIVITY_CREATE(20100,"查询到社团用户创建的活动"),
+    SUCCESS_SELECT_ACTIVITY_PROCESS(20200,"查询到需要审核的活动"),
+    SUCCESS_UPDATE_ACTIVITY_AGREE(20201,"审核同意通过"),
+    SUCCESS_UPDATE_ACTIVITY_REFUSE(20202,"审核拒绝通过"),
 
     //失败
     FAIL_SELECT(30000,"查询失败"),
     FAIL_UPDATE(30001,"更新失败");
+
 
     private int code;
     private String message;//中文描述
