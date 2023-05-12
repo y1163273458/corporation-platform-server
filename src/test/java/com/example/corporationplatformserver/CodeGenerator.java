@@ -12,7 +12,7 @@ public class CodeGenerator {
         String username = "root";
         String password = "y1163273458";
         String mapperLocation = "E:\\project\\corporation-platform-server\\src\\main\\resources\\mappers";
-        String tables = "corporationm_table,user_table,corporation_table,activity_table,notice_table,process_table";
+        String tables = "corporationm_table,user_table,corporation_table,activity_table,notice_table,process_table,news_table";
         FastAutoGenerator.create(url, username, password)
                 .globalConfig(builder -> {
                     builder.author("YeKaihui") // 设置作者

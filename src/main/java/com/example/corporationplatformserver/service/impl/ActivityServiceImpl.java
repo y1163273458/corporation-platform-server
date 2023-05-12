@@ -131,4 +131,17 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
         }
         return Boolean.FALSE;
     }
+
+    @Override
+    public List<Activity> search(String searchText) {
+        LambdaQueryWrapper<Activity> wrapper = new LambdaQueryWrapper<>();
+        wrapper.ne(Activity::getAstatus,"");
+        wrapper.like(Activity::getAname,searchText);
+        wrapper.orderByDesc(Activity::getUpdateTime);
+        List<Activity> result = this.baseMapper.selectList(wrapper);
+        if (result != null){
+            return result;
+        }
+        return null;
+    }
 }

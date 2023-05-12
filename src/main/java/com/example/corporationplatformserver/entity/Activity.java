@@ -37,6 +37,10 @@ public class Activity implements Serializable {
      * 活动封面图片
      */
     private String aimage;
+    /**
+     * 活动点击次数
+     */
+    private long nclick;
 
     /**
      * 活动开始报名时间

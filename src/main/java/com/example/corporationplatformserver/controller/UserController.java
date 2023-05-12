@@ -48,10 +48,9 @@ public class UserController {
         if (data != null){
             //根据该用户创建时间和最后更新时间判断该用户是否为首次登录,首次登录则需要该用户更改密码
             User user = (User) data.get("user");
-            if (user.getCreateTime().equals(user.getUpdateTime())){
+            if (!(user.getCollage().equals("系统")) && user.getCreateTime().equals(user.getUpdateTime())){
                 return Result.success(20010,code.getMessageByCode(20010));
             }
-//            Boolean isfirstlogin = userService.isFirstLogin(userinfo);
             // 根据用户id，判断是否加入了社团
             Corporationm corporationm = corporationmService.hasJoin(userinfo);
             // 如果该用户加入了社团则查询对应的社团名称

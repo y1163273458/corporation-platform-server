@@ -28,4 +28,6 @@ public interface IActivityService extends IService<Activity> {
     Boolean agree(String pid, Integer aid);
 
     Boolean refuse(String pid, Integer aid);
+
+    List<Activity> search(String searchText);
 }

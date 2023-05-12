@@ -17,10 +17,12 @@ public enum Code {
     SUCCESS_SELECT_ACTIVITY_PROCESS(20200,"查询到需要审核的活动"),
     SUCCESS_UPDATE_ACTIVITY_AGREE(20201,"审核同意通过"),
     SUCCESS_UPDATE_ACTIVITY_REFUSE(20202,"审核拒绝通过"),
+    SUCCESS_UPLOAD_IMAGE(21000,"图片上传成功"),
 
     //失败
     FAIL_SELECT(30000,"查询失败"),
-    FAIL_UPDATE(30001,"更新失败");
+    FAIL_UPDATE(30001,"更新失败"),
+    FAIL_UPLOAD_IMAGE(31000,"图片上传失败");
 
 
     private int code;

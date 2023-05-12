@@ -19,7 +19,5 @@ public interface IUserService extends IService<User> {
 
     String getUName(String uid);
 
-    Boolean isFirstLogin(User userinfo);
-
     Map<String, Object> changepassword(User userinfo);
 }

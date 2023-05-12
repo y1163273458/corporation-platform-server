@@ -52,17 +52,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
 
     @Override
-    public Boolean isFirstLogin(User userinfo) {
-        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(User::getUid,userinfo.getUid());
-        User user = this.baseMapper.selectOne(wrapper);
-        if(user.getCreateTime().equals(user.getUpdateTime())){
-            return Boolean.TRUE;
-        }
-        return Boolean.FALSE;
-    }
-
-    @Override
     public Map<String, Object> changepassword(User userinfo) {
         userinfo.setUpdateTime(new SystemDateTime().getTime());
 
